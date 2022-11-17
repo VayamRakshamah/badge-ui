@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import MetaBadgeData from './records.json';
+import PostForm from './PostForm';
 
 function App() {
   return (
     <div className="App">
+
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Find your Metabadges here !</h1>
       </header>
+      <PostForm/>
+      {
+        MetaBadgeData && MetaBadgeData.map( record => {
+            return(
+              <div className="box" key={record.id}>
+                <strong>{record.title}</strong><br/>
+                {record.description}<br/>
+                {record.group}<br/>
+                {record.link}<br/><br/>
+              </div>
+            )
+        } )
+      }
     </div>
   );
 }
